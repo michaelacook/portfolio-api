@@ -1,8 +1,15 @@
 const { User } = require("../models/index")
 
+/**
+ * Makes up part of service layer for interacting with models
+ * and processes data
+ * Encapsulates static methods for interacting with the User model
+ */
 module.exports = class UserService {
   /**
    * Return object for owner of site
+   * @return {Promise} resolves with user object
+   * @return {Promise} rejects with boolean false
    */
   static async getUser() {
     try {
@@ -18,7 +25,7 @@ module.exports = class UserService {
   /**
    * Update table cols specified in payload
    * @param {Object} payload - object containing properties to change
-   * @return {Promise} true on success, false on fail
+   * @return {Promise} resolves with true on success, false on fail
    */
   static async updateUser(payload) {
     try {
