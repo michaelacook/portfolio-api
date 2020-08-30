@@ -41,7 +41,7 @@ module.exports = class PostController {
    */
   static async postPOST(req, res, next) {
     try {
-      const id = await PostService.createPost(req)
+      const id = await PostService.createPost(req.body)
       return res.status(201).json(id)
     } catch (error) {
       next(error)
