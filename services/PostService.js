@@ -13,7 +13,7 @@ module.exports = class PostService {
       await Post.sync()
       await Post.create({
         title,
-        description,
+        body,
         tags,
       }).then((course) => (id = course.id))
       return id

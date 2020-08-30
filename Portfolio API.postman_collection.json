@@ -1,0 +1,239 @@
+{
+  "info": {
+    "_postman_id": "10a3d9a6-d10c-4127-a154-30938bf3f60c",
+    "name": "Portfolio API",
+    "description": "Tests for my portfolio site back-end.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET posts",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/posts",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["posts"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET post by id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/posts/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["posts", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST post",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "asdfasdf",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "mcook0775@gmail.com",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"title\": \"Test Title\",\n    \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit.Cras quis enim tempus, egestas orci non, blandit odio. Fusce porta porttitor augue quis congue. Cras aliquam luctus lectus in congue. Nunc laoreet, nibh et rutrum rutrum, magna nisl lacinia urna, eget efficitur justo leo id neque. Quisque sagittis facilisis tortor, et sodales lorem sodales sit amet. Vestibulum est sem, dignissim nec orci nec, ullamcorper congue velit. Fusce porta porttitor augue quis congue. Donec elementum sem sit amet lectus lobortis hendrerit. Vivamus finibus, ante tincidunt gravida tincidunt, enim ipsum gravida urna, quis dapibus sapien massa eget mi.\",\n    \"tags\": [\n        \"test\",\n        \"api\",\n        \"portfolio\"\n    ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/posts/add",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["posts", "add"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PUT post",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "asdfasdf",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "mcook0775@gmail.com",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"title\": \"Updated Title\",\n    \"body\": \"Updated body\",\n    \"tags\": [\n        \"stuff\",\n        \"things\",\n        \"programming\"\n    ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/posts/1/update",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["posts", "1", "update"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE post",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "asdfasdf",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "mcook0775@gmail.com",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/posts/3/delete",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["posts", "3", "delete"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST post (no auth)",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"title\": \"Test title\",\n    \"body\": \"test body\",\n    \"tags\": [\n        \"this\",\n        \"is\",\n        \"a\", \n        \"tag\"\n    ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/posts/add",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["posts", "add"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PUT post (no auth)",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"title\": \"Updated Test Title\",\n    \"body\": \"Updated body\",\n    \"tags\": [\n        \"some\",\n        \"updated\",\n        \"tags\"\n    ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/posts/1/update",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["posts", "1", "update"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE post (no auth)",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/posts/3/delete",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["posts", "3", "delete"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "e495d6ca-967c-4e1a-aa41-463a3f56198f",
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "7aa6d5fc-33bf-42be-b3d3-7cdd608e143f",
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "protocolProfileBehavior": {}
+}
