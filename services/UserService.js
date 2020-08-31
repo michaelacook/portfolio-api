@@ -17,8 +17,7 @@ module.exports = class UserService {
       const user = await User.findByPk(1)
       return user
     } catch (error) {
-      console.log(error)
-      return false
+      return Promise.reject(error)
     }
   }
 
@@ -36,8 +35,7 @@ module.exports = class UserService {
       }
       return true
     } catch (error) {
-      console.log(error)
-      return false
+      return Promise.reject(error)
     }
   }
 }

@@ -18,8 +18,7 @@ module.exports = class PostService {
       }).then((course) => (id = course.id))
       return id
     } catch (error) {
-      console.log(error)
-      return false
+      return Promise.reject(error)
     }
   }
 
@@ -37,8 +36,7 @@ module.exports = class PostService {
       }
       return []
     } catch (error) {
-      console.log(error)
-      return false
+      return Promise.reject(error)
     }
   }
 
@@ -54,8 +52,7 @@ module.exports = class PostService {
       const post = await Post.findByPk(id)
       return post
     } catch (error) {
-      console.log(error)
-      return false
+      return Promise.reject(error)
     }
   }
 
@@ -74,8 +71,7 @@ module.exports = class PostService {
       }
       return true
     } catch (error) {
-      console.log(error)
-      return false
+      return Promise.reject(error)
     }
   }
 
@@ -91,8 +87,7 @@ module.exports = class PostService {
       await post.destroy()
       return true
     } catch (error) {
-      console.log(error)
-      return false
+      return Promise.reject(error)
     }
   }
 }
