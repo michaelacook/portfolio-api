@@ -4,6 +4,8 @@ const router = express.Router()
 const PostController = require("../controllers/PostController")
 const authorize = require("../middleware/authorization")()
 
+// Post routes------------------------------------------------//
+
 router.get("/posts", (req, res, next) => {
   PostController.postsGET(req, res, next)
 })
@@ -26,5 +28,11 @@ router.put("/posts/:id/update", authorize, (req, res, next) => {
 router.delete("/posts/:id/delete", authorize, (req, res, next) => {
   PostController.postDELETE(req, res, next)
 })
+
+// Project routes---------------------------------------------//
+
+// User routes------------------------------------------------//
+
+
 
 module.exports = router

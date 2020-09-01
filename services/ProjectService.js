@@ -1,4 +1,5 @@
 const { Project } = require("../models/index")
+const handleImageUpload = require("../lib/imageUpload")
 
 module.exports = class ProjectService {
   /**
@@ -40,11 +41,12 @@ module.exports = class ProjectService {
   static async addProject(payload) {
     try {
      // video tut on file uploads: https://www.youtube.com/watch?v=ymO_r1hcIXk
+     let img_url = null
      await Project.sync()
-     const file = payload.files.img
-     const imageName = file.name
-     const { title, description, repo_url, technologies, live_link } = payload.body 
-     const img_url = `http://localhost:3000/static/images/${imageName}`
+     if (req.files) {
+      img_url = `http://localhost:3000/static/images/${req.files.img.name}`
+      handleImageUpload(req.files, 'img')
+     }
      await Project.create({
       title,
       description,
@@ -53,7 +55,6 @@ module.exports = class ProjectService {
       technologies, 
       live_link
      })
-     payload.file.img.mv(`./public/images/${fileName}`)
      return true
     } catch (error) {
       return Promise.reject(error)
