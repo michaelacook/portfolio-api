@@ -36,9 +36,9 @@ module.exports = class ProjectService {
   /**
    * Add a project to the database 
    * Add a project image to static files
-   * @param {Object} payload - http request object
+   * @param {Object} req - http request object
    */
-  static async addProject(payload) {
+  static async addProject(req) {
     try {
      // video tut on file uploads: https://www.youtube.com/watch?v=ymO_r1hcIXk
      let img_url = null
@@ -47,6 +47,13 @@ module.exports = class ProjectService {
       img_url = `http://localhost:3000/static/images/${req.files.img.name}`
       handleImageUpload(req.files, 'img')
      }
+     const {
+       title, 
+       description,
+       repo_url,
+       technologies, 
+       live_link
+     } = req.body
      await Project.create({
       title,
       description,
