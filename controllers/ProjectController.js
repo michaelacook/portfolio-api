@@ -17,7 +17,7 @@ module.exports = class ProjectController {
   }
 
   /**
-   * Handle control for /project/:id GET
+   * Handle control for /projects/:id GET
    * @param {Object} req 
    * @param {Object} res 
    * @param {Function} next 
@@ -48,7 +48,7 @@ module.exports = class ProjectController {
   }
 
   /**
-   * Handle control for /projects/update PUT
+   * Handle control for /projects/:id/update PUT
    * @param {Object} req 
    * @param {Object} res 
    * @param {Function} next 
