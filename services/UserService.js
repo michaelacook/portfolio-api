@@ -8,13 +8,18 @@ const { User } = require("../models/index")
 module.exports = class UserService {
   /**
    * Return object for owner of site
+   * @param {String} email
    * @return {Promise} resolves with user object
    * @return {Promise} rejects with boolean false
    */
-  static async getUser() {
+  static async getUser(email) {
     try {
       await User.sync()
-      const user = await User.findByPk(1)
+      const user = await User.findOne({
+        where: {
+          email: email
+        }
+      })
       return user
     } catch (error) {
       return Promise.reject(error)

@@ -15,7 +15,7 @@ module.exports = () => {
     const credentials = auth(req)
     if (credentials) {
       const { name, pass } = credentials
-      const user = await UserService.getUser()
+      const user = await UserService.getUser(name)
       if (user) {
         const authed = bcrypt.compareSync(pass, user.password)
         if (authed) {

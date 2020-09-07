@@ -7,7 +7,9 @@ const ProjectController = require("../controllers/ProjectController")
 const authorize = require("../middleware/authorization")()
 
 // User routes------------------------------------------------//
-router.get("/user", (req, res, next) => {
+
+// private
+router.get("/user", authorize, (req, res, next) => {
   UserController.userGET(req, res, next)
 })
 
