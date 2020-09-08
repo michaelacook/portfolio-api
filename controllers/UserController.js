@@ -9,7 +9,8 @@ module.exports = class UserController {
    */
   static async userGET(req, res, next) {
     try {
-      const user = await UserService.getUser()
+      const email = req.user.email
+      const user = await UserService.getUser(email)
       return res.json(user)
     } catch (error) {
       next(error)

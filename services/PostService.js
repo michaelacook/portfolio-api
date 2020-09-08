@@ -15,7 +15,7 @@ module.exports = class PostService {
         title,
         body,
         tags,
-      }).then((course) => (id = course.id))
+      }).then((post) => (id = post.id))
       return id
     } catch (error) {
       return Promise.reject(error)
