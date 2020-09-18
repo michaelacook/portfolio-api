@@ -95,12 +95,12 @@ module.exports = class PostService {
   /**
    * Search for posts 
    * @param {String} keyword 
-   * @return {Promise} searchResults or error
+   * @return {Promise} searchResults or false
    */
   static async searchPost(keyword) {
     try {
       await Post.sync()
-      const searchResults = await post.findAll({
+      const searchResults = await Post.findAll({
         where: {
           title: {
             [Op.like]: `%${keyword}%`
@@ -109,6 +109,7 @@ module.exports = class PostService {
       })
       return searchResults
     } catch (error) {
+      console.log(error)
       return Promise.reject(error)
     }
   }
