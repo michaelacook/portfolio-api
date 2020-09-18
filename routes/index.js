@@ -1,6 +1,17 @@
 const express = require("express")
 const router = express.Router()
 
+const multer = require("multer")
+const path = require("path")
+const storage = multer.diskStorage({
+  destination: "./public/images/",
+  filename: (req, file, cb) => {
+    cb(null, `${file.originalname}`)
+  } 
+})
+
+const upload = multer({ storage }).single("img")
+
 const UserController = require("../controllers/UserController")
 const PostController = require("../controllers/PostController")
 const ProjectController = require("../controllers/ProjectController")
@@ -38,6 +49,10 @@ router.delete("/posts/:id/delete", authorize, (req, res, next) => {
   PostController.postDELETE(req, res, next)
 })
 
+router.get("/posts/search/:keyword", (req, res, next) => {
+  PostController.postSEARCH(req, res, next)
+}) 
+
 // Project routes---------------------------------------------//
 router.get("/projects", (req, res, next) => {
   ProjectController.projectsGET(req, res, next)
@@ -48,7 +63,20 @@ router.get("/projects/:id", (req, res, next) => {
 })
 
 router.post("/projects/add", authorize, (req, res, next) => {
+  console.log(req.body)
   ProjectController.projectPOST(req, res, next)
+})
+
+// handle file upload
+// make this a protected route
+router.post("/projects/upload", (req, res) => {
+  upload(req, res, err => {
+    if (err) {
+      console.log(err)
+      return res.status(500).end()
+    }
+    res.status(204).end()
+  })
 })
 
 router.put("/projects/:id/update", authorize, (req, res, next) => {

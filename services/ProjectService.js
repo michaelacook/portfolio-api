@@ -40,13 +40,8 @@ module.exports = class ProjectService {
    */
   static async addProject(req) {
     try {
-     // video tut on file uploads: https://www.youtube.com/watch?v=ymO_r1hcIXk
-     let img_url = null
+     const img_url = `http://localhost:5000/static/images/${req.body.imgFileName}`
      await Project.sync()
-     if (req.files) {
-      img_url = `http://localhost:3000/static/images/${req.files.img.name}`
-      handleImageUpload(req.files, 'img')
-     }
      const {
        title, 
        description,

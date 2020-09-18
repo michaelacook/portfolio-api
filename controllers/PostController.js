@@ -42,7 +42,6 @@ module.exports = class PostController {
   static async postPOST(req, res, next) {
     try {
       const id = await PostService.createPost(req.body)
-      console.log(id)
       return res.status(201).json(id)
     } catch (error) {
       next(error)
@@ -76,6 +75,22 @@ module.exports = class PostController {
       const id = req.params.id
       await PostService.deletePost(id)
       return res.status(204).end()
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  /**
+   * handle control for /posts/search/:keyword route GET
+   * @param {Object} req 
+   * @param {Object} res 
+   * @param {Object} next 
+   */
+  static async postSEARCH(req, res, next) {
+    try {
+      const keyword = req.params.keyword 
+      const posts = await PostService.searchPost(keyword)
+      return res.json(posts)
     } catch (error) {
       next(error)
     }
