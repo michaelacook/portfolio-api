@@ -85,7 +85,7 @@ module.exports = class PostService {
     try {
       await Post.sync()
       const post = Post.findByPk(id)
-      await post.destroy()
+      await Post.destroy()
       return true
     } catch (error) {
       return Promise.reject(error)
