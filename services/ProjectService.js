@@ -40,7 +40,7 @@ module.exports = class ProjectService {
    */
   static async addProject(req) {
     try {
-     const img_url = `http://localhost:5000/static/images/${req.body.imgFileName}`
+     const img_url = `https://michael-cook-portfolio-api.herokuapp.com/static/images/${req.body.imgFileName}`
      await Project.sync()
      const {
        title, 
