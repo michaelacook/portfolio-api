@@ -1,5 +1,5 @@
 const { Post } = require("../models/index")
-const { Op } = require("sequelize");
+const { Op } = require("sequelize")
 
 module.exports = class PostService {
   /**
@@ -84,8 +84,11 @@ module.exports = class PostService {
   static async deletePost(id) {
     try {
       await Post.sync()
-      const post = Post.findByPk(id)
-      await Post.destroy()
+      await Post.destroy({
+        where: {
+          id,
+        },
+      })
       return true
     } catch (error) {
       return Promise.reject(error)
@@ -93,8 +96,8 @@ module.exports = class PostService {
   }
 
   /**
-   * Search for posts 
-   * @param {String} keyword 
+   * Search for posts
+   * @param {String} keyword
    * @return {Promise} searchResults or false
    */
   static async searchPost(keyword) {
@@ -103,9 +106,9 @@ module.exports = class PostService {
       const searchResults = await Post.findAll({
         where: {
           title: {
-            [Op.like]: `%${keyword}%`
-          }
-        }
+            [Op.like]: `%${keyword}%`,
+          },
+        },
       })
       return searchResults
     } catch (error) {

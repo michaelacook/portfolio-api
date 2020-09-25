@@ -7,7 +7,7 @@ const storage = multer.diskStorage({
   destination: "./public/images/",
   filename: (req, file, cb) => {
     cb(null, `${file.originalname}`)
-  } 
+  },
 })
 
 const upload = multer({ storage }).single("img")
@@ -51,7 +51,7 @@ router.delete("/posts/:id/delete", authorize, (req, res, next) => {
 
 router.get("/posts/search/:keyword", (req, res, next) => {
   PostController.postSEARCH(req, res, next)
-}) 
+})
 
 // Project routes---------------------------------------------//
 router.get("/projects", (req, res, next) => {
@@ -70,7 +70,7 @@ router.post("/projects/add", authorize, (req, res, next) => {
 // handle file upload
 // make this a protected route
 router.post("/projects/upload", (req, res) => {
-  upload(req, res, err => {
+  upload(req, res, (err) => {
     if (err) {
       console.log(err)
       return res.status(500).end()
@@ -88,7 +88,5 @@ router.delete("/projects/:id/delete", authorize, (req, res, next) => {
 })
 
 // User routes------------------------------------------------//
-
-
 
 module.exports = router

@@ -18,13 +18,13 @@ module.exports = class ProjectController {
 
   /**
    * Handle control for /projects/:id GET
-   * @param {Object} req 
-   * @param {Object} res 
-   * @param {Function} next 
+   * @param {Object} req
+   * @param {Object} res
+   * @param {Function} next
    */
   static async projectGET(req, res, next) {
     try {
-      const id = req.params.id 
+      const id = req.params.id
       const project = await ProjectService.getProject(id)
       return res.json(project)
     } catch (error) {
@@ -34,9 +34,9 @@ module.exports = class ProjectController {
 
   /**
    * Handle control for /projects/add POST
-   * @param {Object} req 
-   * @param {Object} res 
-   * @param {Function} next 
+   * @param {Object} req
+   * @param {Object} res
+   * @param {Function} next
    */
   static async projectPOST(req, res, next) {
     try {
@@ -49,13 +49,13 @@ module.exports = class ProjectController {
 
   /**
    * Handle control for /projects/:id/update PUT
-   * @param {Object} req 
-   * @param {Object} res 
-   * @param {Function} next 
+   * @param {Object} req
+   * @param {Object} res
+   * @param {Function} next
    */
   static async projectPUT(req, res, next) {
     try {
-      const id = req.params.id 
+      const id = req.params.id
       await ProjectService.updateProject(id, req.body)
       return res.status(204).end()
     } catch (error) {
@@ -65,13 +65,13 @@ module.exports = class ProjectController {
 
   /**
    * Handle control for /projects/:id/delete DELETE
-   * @param {Object} req 
-   * @param {Object} res 
-   * @param {Object} next 
+   * @param {Object} req
+   * @param {Object} res
+   * @param {Object} next
    */
   static async projectDELETE(req, res, next) {
     try {
-      const id = req.params.id 
+      const id = req.params.id
       await ProjectService.deleteProject(id)
       return res.status(204).end()
     } catch (error) {

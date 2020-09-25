@@ -82,13 +82,13 @@ module.exports = class PostController {
 
   /**
    * handle control for /posts/search/:keyword route GET
-   * @param {Object} req 
-   * @param {Object} res 
-   * @param {Object} next 
+   * @param {Object} req
+   * @param {Object} res
+   * @param {Object} next
    */
   static async postSEARCH(req, res, next) {
     try {
-      const keyword = req.params.keyword 
+      const keyword = req.params.keyword
       const posts = await PostService.searchPost(keyword)
       return res.json(posts)
     } catch (error) {

@@ -17,8 +17,8 @@ module.exports = class UserService {
       await User.sync()
       const user = await User.findOne({
         where: {
-          email: email
-        }
+          email: email,
+        },
       })
       return user
     } catch (error) {
