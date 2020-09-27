@@ -10,7 +10,11 @@ module.exports = class ProjectService {
   static async getProjects() {
     try {
       await Project.sync()
-      const projects = await Project.findAll()
+      const projects = await Project.findAll({
+        order: [
+          ["id", "ASC"]
+        ]
+      })
       return projects
     } catch (error) {
       return Promise.reject(error)
