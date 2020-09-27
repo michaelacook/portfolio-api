@@ -12,7 +12,7 @@ module.exports = class ProjectService {
       await Project.sync()
       const projects = await Project.findAll({
         order: [
-          ["id", "ASC"]
+          ["id", "DESC"]
         ]
       })
       return projects
