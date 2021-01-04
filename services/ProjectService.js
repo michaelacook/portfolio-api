@@ -11,9 +11,7 @@ module.exports = class ProjectService {
     try {
       await Project.sync()
       const projects = await Project.findAll({
-        order: [
-          ["id", "DESC"]
-        ]
+        order: [["id", "DESC"]],
       })
       return projects
     } catch (error) {

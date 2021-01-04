@@ -32,9 +32,7 @@ module.exports = class PostService {
     try {
       await Post.sync()
       const posts = await Post.findAll({
-        order: [
-          ["id", "DESC"]
-        ]
+        order: [["id", "DESC"]],
       })
       if (posts) {
         return posts
