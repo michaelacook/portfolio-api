@@ -1,5 +1,4 @@
 const { Project } = require("../models/index")
-const handleImageUpload = require("../lib/imageUpload")
 
 module.exports = class ProjectService {
   /**
