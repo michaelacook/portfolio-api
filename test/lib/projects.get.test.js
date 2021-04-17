@@ -29,6 +29,12 @@ module.exports = () => {
           .expect(200)
           .then((response) => {
             assert.isObject(response.body)
+            assert.property(response.body, "title")
+            assert.property(response.body, "description")
+            assert.property(response.body, "img_url")
+            assert.property(response.body, "repo_url")
+            assert.property(response.body, "technologies")
+            assert.property(response.body, "live_link")
           })
           .catch((err) => done(err))
       })
