@@ -17,7 +17,7 @@ router.get("/projects/:id", async (req, res, next) => {
   try {
     const id = req.params.id
     const project = await ProjectService.getProject(id)
-    return res.json(project)
+    return project ? res.json(project) : res.status(404).end()
   } catch (error) {
     next(error)
   }
