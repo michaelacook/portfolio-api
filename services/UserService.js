@@ -22,7 +22,6 @@ module.exports = {
       })
       return user
     } catch (error) {
-      console.log(error)
       return Promise.reject(error)
     }
   },
