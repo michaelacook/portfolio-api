@@ -69,6 +69,7 @@ module.exports = class ProjectService {
     try {
       await Project.sync()
       const project = await Project.findByPk(id)
+      console.log(project)
       for (let name in payload) {
         project[name] = payload[name]
         await project.save()
