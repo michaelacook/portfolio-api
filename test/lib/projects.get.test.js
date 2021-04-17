@@ -40,7 +40,7 @@ module.exports = () => {
       })
 
       it("returns a 404 Not Found when passed a non-existent id", (done) => {
-        request(app).get("/projects/100").expect(404, done)
+        request(app).get("/projects/1000").expect(404, done)
       })
     })
   })

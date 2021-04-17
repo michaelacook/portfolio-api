@@ -8,7 +8,7 @@ module.exports = () => {
         request(app)
           .put("/projects/77/update")
           .send({
-            description: "updated"
+            description: "updated",
           })
           .set("Accept", "application/json")
           .expect(401, done)
@@ -19,7 +19,7 @@ module.exports = () => {
           .put("/projects/77/update")
           .auth("mcook0775@gmail.com", process.env.PASSWORD)
           .send({
-            description: "updated"
+            description: "updated",
           })
           .set("Accept", "application/json")
           .expect(204, done)
