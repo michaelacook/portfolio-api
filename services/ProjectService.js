@@ -1,12 +1,12 @@
 const { Project } = require("../models/index")
 
-module.exports = class ProjectService {
+module.exports = {
   /**
    * Get all projects
    * @return {Promise} resolve to array of projects on success
    * @return {Promise} reject with boolean false on fail
    */
-  static async getProjects() {
+  async getProjects() {
     try {
       await Project.sync()
       const projects = await Project.findAll({
@@ -16,7 +16,7 @@ module.exports = class ProjectService {
     } catch (error) {
       return Promise.reject(error)
     }
-  }
+  },
 
   /**
    * Get a specific project
@@ -24,7 +24,7 @@ module.exports = class ProjectService {
    * @return {Promise} resolve to project object on success
    * @return {Promise} boolean false on fail
    */
-  static async getProject(id) {
+  async getProject(id) {
     try {
       await Project.sync()
       const project = await Project.findByPk(id)
@@ -32,14 +32,14 @@ module.exports = class ProjectService {
     } catch (error) {
       return Promise.reject(error)
     }
-  }
+  },
 
   /**
    * Add a project to the database
    * Add a project image to static files
    * @param {Object} req - http request object
    */
-  static async addProject(req) {
+  async addProject(req) {
     try {
       const img_url = `https://michael-cook-portfolio-api.herokuapp.com/static/images/${req.body.imgFileName}`
       await Project.sync()
@@ -56,7 +56,7 @@ module.exports = class ProjectService {
     } catch (error) {
       return Promise.reject(error)
     }
-  }
+  },
 
   /**
    * Update a post
@@ -65,7 +65,7 @@ module.exports = class ProjectService {
    * @return {Promise} resolve to true on success
    * @return {Promise} reject with false on fail
    */
-  static async updateProject(id, payload) {
+  async updateProject(id, payload) {
     try {
       await Project.sync()
       const project = await Project.findByPk(id)
@@ -78,13 +78,13 @@ module.exports = class ProjectService {
     } catch (error) {
       return Promise.reject(error)
     }
-  }
+  },
 
   /**
    * Delete a project
    * @param {Number} id - project PK
    */
-  static async deleteProject(id) {
+  async deleteProject(id) {
     try {
       await Project.sync()
       const project = await Project.findByPk(id)
@@ -93,5 +93,5 @@ module.exports = class ProjectService {
     } catch (error) {
       return Promise.reject(error)
     }
-  }
+  },
 }
