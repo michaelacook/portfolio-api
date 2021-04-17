@@ -5,14 +5,14 @@ const { User } = require("../models/index")
  * and processes data
  * Encapsulates static methods for interacting with the User model
  */
-module.exports = class UserService {
+module.exports = {
   /**
    * Return object for owner of site
    * @param {String} email
    * @return {Promise} resolves with user object
    * @return {Promise} rejects with boolean false
    */
-  static async getUser(email) {
+  async getUser(email) {
     try {
       await User.sync()
       const user = await User.findOne({
@@ -25,14 +25,14 @@ module.exports = class UserService {
       console.log(error)
       return Promise.reject(error)
     }
-  }
+  },
 
   /**
    * Update table cols specified in payload
    * @param {Object} payload - object containing properties to change
    * @return {Promise} resolves with true on success, false on fail
    */
-  static async updateUser(payload) {
+  async updateUser(payload) {
     try {
       const user = await User.findByPk(1)
       for (let name in payload) {
@@ -43,5 +43,5 @@ module.exports = class UserService {
     } catch (error) {
       return Promise.reject(error)
     }
-  }
+  },
 }
