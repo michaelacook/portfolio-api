@@ -2,6 +2,8 @@ const request = require("supertest")
 const app = require("../../app")
 const { assert } = require("chai")
 
+const ProjectService = require("../../services/ProjectService")
+
 module.exports = () => {
   describe("projects GET", () => {
     describe("/projects", () => {
@@ -20,10 +22,12 @@ module.exports = () => {
     })
 
     describe("/projects/:id", () => {
-      it("returns a 200 OK and a single project object", () => {
+      it("returns a 200 OK and a single project object", async () => {
+        const projects = await ProjectService.getProjects()
+        const { id } = projects[projects.length - 1]
+
         request(app)
-          // somehow I had up to 76 test projects. This could obviously change with some seeds added
-          .get("/projects/76")
+          .get(`/projects/${id}`)
           .set("Accept", "application/json")
           .expect("Content-Type", /json/)
           .expect(200)
@@ -35,12 +39,21 @@ module.exports = () => {
             assert.property(response.body, "repo_url")
             assert.property(response.body, "technologies")
             assert.property(response.body, "live_link")
+            done()
           })
-          .catch((err) => done(err))
       })
 
-      it("returns a 404 Not Found when passed a non-existent id", (done) => {
-        request(app).get("/projects/1000").expect(404, done)
+      it("returns a 404 Not Found when passed a non-existent id", async () => {
+        const projects = await ProjectService.getProjects()
+        const { id } = projects[projects.length - 1]
+        const badId = id + 1
+
+        request(app)
+          .get(`/projects/${badId}`)
+          .expect(404)
+          .then((response) => {
+            done()
+          })
       })
     })
   })
