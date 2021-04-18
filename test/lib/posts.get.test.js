@@ -17,6 +17,20 @@ module.exports = () => {
           })
           .catch((err) => done(err))
       })
+
+      it("returns a 200 OK and a single post", async () => {
+        const posts = await PostService.getAllPosts()
+        const { id } = posts[posts.length - 1]
+
+        request(app)
+          .get(`/posts/${id}`)
+          .expect("Content-Type", /json/)
+          .expect(200)
+          .then((response) => {
+            assert.isObject(response.body)
+            done()
+          })
+      })
     })
   })
 }
