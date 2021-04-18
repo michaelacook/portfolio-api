@@ -11,7 +11,7 @@ const updatedPost = {
 module.exports = () => {
   describe("posts PUT", () => {
     describe("/posts/:id/update", () => {
-      it("returns 500 Server Error when send a PUT request with a bad post id", async () => {
+      it("returns 404 Not Found when send a PUT request with a bad post id", async () => {
         const posts = await PostService.getAllPosts()
         const { id } = posts[posts.length - 1]
         const badId = id + 1
@@ -20,8 +20,8 @@ module.exports = () => {
           .put(`/posts/${badId}/update`)
           .auth("mcook0775@gmail.com", process.env.PASSWORD)
           .send(updatedPost)
-          .expect(500)
-          .then((response) => {
+          .expect(404)
+          .then(() => {
             done()
           })
       })
