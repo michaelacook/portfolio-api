@@ -34,11 +34,6 @@ module.exports = {
       const posts = await Post.findAll({
         order: [["id", "DESC"]],
       })
-      if (!posts) {
-        const error = new Error("posts not found")
-        error.status = 404
-        return Promise.reject(error)
-      }
       return posts
     } catch (error) {
       return Promise.reject(error)
@@ -55,11 +50,6 @@ module.exports = {
     try {
       await Post.sync()
       const post = await Post.findByPk(id)
-      if (!post) {
-        const error = new Error("Post not found")
-        error.status = 404
-        return Promise.reject(error)
-      }
       return post
     } catch (error) {
       return Promise.reject(error)
@@ -75,11 +65,6 @@ module.exports = {
     try {
       await Post.sync()
       const post = await Post.findByPk(id)
-      if (!post) {
-        const error = new Error("Post not found")
-        error.status = 404
-        return Promise.reject(error)
-      }
       for (let name in payload) {
         post[name] = payload[name]
         await post.save()
@@ -99,11 +84,6 @@ module.exports = {
     try {
       await Post.sync()
       const post = await Post.findByPk(id)
-      if (!post) {
-        const error = new Error("Post not found")
-        error.status = 404
-        return Promise.reject(error)
-      }
       await post.destroy()
       return true
     } catch (error) {

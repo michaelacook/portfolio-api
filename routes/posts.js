@@ -2,7 +2,8 @@ const express = require("express")
 const router = express.Router()
 
 const PostService = require("../services/PostService")
-const authorize = require("../middleware/authorization")()
+const authorizationMiddleware = require("../middleware/authorization")()
+const postExistsMiddleware = require("../middleware/postExists")()
 
 router.get("/posts", async (req, res, next) => {
   try {
@@ -13,7 +14,7 @@ router.get("/posts", async (req, res, next) => {
   }
 })
 
-router.get("/posts/:id", async (req, res, next) => {
+router.get("/posts/:id", postExistsMiddleware, async (req, res, next) => {
   try {
     const id = req.params.id
     const post = await PostService.getPost(id)
@@ -24,7 +25,7 @@ router.get("/posts/:id", async (req, res, next) => {
 })
 
 // private route
-router.post("/posts/add", authorize, async (req, res, next) => {
+router.post("/posts/add", authorizationMiddleware, async (req, res, next) => {
   try {
     const id = await PostService.createPost(req.body)
     return res.status(201).json(id)
@@ -34,26 +35,36 @@ router.post("/posts/add", authorize, async (req, res, next) => {
 })
 
 // private route
-router.put("/posts/:id/update", authorize, async (req, res, next) => {
-  try {
-    const id = req.params.id
-    await PostService.updatePost(id, req)
-    return res.status(204).end()
-  } catch (error) {
-    next(error)
+router.put(
+  "/posts/:id/update",
+  authorizationMiddleware,
+  postExistsMiddleware,
+  async (req, res, next) => {
+    try {
+      const id = req.params.id
+      await PostService.updatePost(id, req)
+      return res.status(204).end()
+    } catch (error) {
+      next(error)
+    }
   }
-})
+)
 
 // private route
-router.delete("/posts/:id/delete", authorize, async (req, res, next) => {
-  try {
-    const id = req.params.id
-    await PostService.deletePost(id)
-    return res.status(204).end()
-  } catch (error) {
-    next(error)
+router.delete(
+  "/posts/:id/delete",
+  authorizationMiddleware,
+  postExistsMiddleware,
+  async (req, res, next) => {
+    try {
+      const id = req.params.id
+      await PostService.deletePost(id)
+      return res.status(204).end()
+    } catch (error) {
+      next(error)
+    }
   }
-})
+)
 
 router.get("/posts/search/:keyword", async (req, res, next) => {
   try {

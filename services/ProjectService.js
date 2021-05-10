@@ -12,11 +12,6 @@ module.exports = {
       const projects = await Project.findAll({
         order: [["id", "DESC"]],
       })
-      if (!projects) {
-        const error = new Error("Projects not found")
-        error.status = 404
-        Promise.reject(error)
-      }
       return projects
     } catch (error) {
       return Promise.reject(error)
@@ -33,11 +28,6 @@ module.exports = {
     try {
       await Project.sync()
       const project = await Project.findByPk(id)
-      if (!project) {
-        const error = new Error("Project not found")
-        error.status = 404
-        return Promise.reject(error)
-      }
       return project
     } catch (error) {
       return Promise.reject(error)
@@ -79,11 +69,6 @@ module.exports = {
     try {
       await Project.sync()
       const project = await Project.findByPk(id)
-      if (!project) {
-        const error = new Error("Project not found")
-        error.status = 404
-        return Promise.reject(error)
-      }
       for (let name in payload) {
         project[name] = payload[name]
         await project.save()
@@ -102,11 +87,6 @@ module.exports = {
     try {
       await Project.sync()
       const project = await Project.findByPk(id)
-      if (!project) {
-        const error = new Error("Project not found")
-        error.status = 404
-        return Promise.reject(error)
-      }
       await project.destroy()
       return true
     } catch (error) {
