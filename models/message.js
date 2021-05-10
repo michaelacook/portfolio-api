@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       subject: DataTypes.STRING,
       content: DataTypes.TEXT,
       read: DataTypes.BOOLEAN,
-      archived: DataTypes.BOOLEAN
+      archived: DataTypes.BOOLEAN,
     },
     {
       sequelize,
