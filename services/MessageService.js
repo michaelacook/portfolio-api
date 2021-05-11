@@ -48,9 +48,9 @@ module.exports = {
   async getMessages(archived = false) {
     try {
       await Message.sync()
-      const messages = await Messages.findAndCountAll({
+      const messages = await Message.findAll({
         where: {
-          archived,
+          archived: archived,
         },
       })
       return messages
