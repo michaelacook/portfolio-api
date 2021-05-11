@@ -1,9 +1,11 @@
+const auth = require("basic-auth")
 const express = require("express")
 const router = express.Router()
 
+const authorizationMiddleware = require("../middleware/authorization")()
 const messageService = require("../services/MessageService")
 
-router.get("/", async (req, res, next) => {
+router.get("/", authorizationMiddleware, async (req, res, next) => {
   try {
     const archived = req.query.archived
     const messages = await messageService.getMessages(
@@ -15,7 +17,7 @@ router.get("/", async (req, res, next) => {
   }
 })
 
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", authorizationMiddleware, async (req, res, next) => {
   try {
     const { id } = req.params
     const message = await messageService.getMessage(id)
@@ -37,7 +39,7 @@ router.post("/", async (req, res, next) => {
   }
 })
 
-router.put("/archive/:id", async (req, res, next) => {
+router.put("/archive/:id", authorizationMiddleware, async (req, res, next) => {
   try {
     const { id } = req.params
     const message = await messageService.archive(id)
@@ -47,17 +49,21 @@ router.put("/archive/:id", async (req, res, next) => {
   }
 })
 
-router.put("/mark-read/:id", async (req, res, next) => {
-  try {
-    const { id } = req.params
-    const message = await messageService.markAsRead(id)
-    return res.status(200).json(message)
-  } catch (err) {
-    next(err)
+router.put(
+  "/mark-read/:id",
+  authorizationMiddleware,
+  async (req, res, next) => {
+    try {
+      const { id } = req.params
+      const message = await messageService.markAsRead(id)
+      return res.status(200).json(message)
+    } catch (err) {
+      next(err)
+    }
   }
-})
+)
 
-router.delete("/:id", async (req, res, next) => {
+router.delete("/:id", authorizationMiddleware, async (req, res, next) => {
   try {
     const { id } = req.params
     await messageService.delete(id)
