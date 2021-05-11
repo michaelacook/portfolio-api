@@ -10,6 +10,7 @@ const cors = require("cors")
 const usersRoute = require("./routes/users")
 const postsRoute = require("./routes/posts")
 const projectsRoute = require("./routes/projects")
+const messagesRoute = require("./routes/messages")
 
 const app = express()
 
@@ -22,6 +23,7 @@ app.use("/static", express.static("public"))
 app.use(usersRoute)
 app.use(postsRoute)
 app.use(projectsRoute)
+app.use("/messages", messagesRoute)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
