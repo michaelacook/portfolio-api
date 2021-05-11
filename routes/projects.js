@@ -23,18 +23,14 @@ router.get("/:id", projectExistsMiddleware, (req, res, next) => {
   }
 })
 
-router.post(
-  "/add",
-  authorizationMiddleware,
-  async (req, res, next) => {
-    try {
-      await projectService.addProject(req)
-      return res.status(201).end()
-    } catch (error) {
-      next(error)
-    }
+router.post("/add", authorizationMiddleware, async (req, res, next) => {
+  try {
+    await projectService.addProject(req)
+    return res.status(201).end()
+  } catch (error) {
+    next(error)
   }
-)
+})
 
 router.put(
   "/:id/update",
