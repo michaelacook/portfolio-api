@@ -5,19 +5,19 @@ const { assert } = require("chai")
 module.exports = () => {
   describe("messages GET", () => {
     describe("/messages", () => {
-      it("returns 200 OK and an array of messages", (done) => {
-        request(app)
+      it("returns 200 OK and an array of messages", () => {
+        return request(app)
           .get("/messages")
           .auth("mcook0775@gmail.com", process.env.PASSWORD)
           .expect("Content-Type", /json/)
           .expect(200)
           .then((response) => {
             assert.isArray(response.body)
-            done()
           })
-          .catch((err) => {
-            done()
-          })
+      })
+
+      it("returns 401 Unauthorized when no auth credentials sent", () => {
+        return request(app).get("/messages").expect(401)
       })
     })
 
@@ -41,6 +41,10 @@ module.exports = () => {
               "updatedAt",
             ])
           })
+      })
+
+      it("returns 401 Unauthorized when no auth credentials sent", () => {
+        return request(app).get("/messages/1").expect(401)
       })
     })
   })
