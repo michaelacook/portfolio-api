@@ -20,9 +20,9 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use("/static", express.static("public"))
 
-app.use(usersRoute)
-app.use(postsRoute)
-app.use(projectsRoute)
+app.use("/user", usersRoute)
+app.use("/posts", postsRoute)
+app.use("/projects", projectsRoute)
 app.use("/messages", messagesRoute)
 
 // catch 404 and forward to error handler

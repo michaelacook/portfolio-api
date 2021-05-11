@@ -5,7 +5,7 @@ const postService = require("../services/PostService")
 const authorizationMiddleware = require("../middleware/authorization")()
 const postExistsMiddleware = require("../middleware/postExists")()
 
-router.get("/posts", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const posts = await postService.getAllPosts()
     return res.json(posts)
@@ -14,7 +14,7 @@ router.get("/posts", async (req, res, next) => {
   }
 })
 
-router.get("/posts/:id", postExistsMiddleware, (req, res, next) => {
+router.get("/:id", postExistsMiddleware, (req, res, next) => {
   try {
     const { post } = req
     return res.json(post)
@@ -24,7 +24,7 @@ router.get("/posts/:id", postExistsMiddleware, (req, res, next) => {
 })
 
 // private route
-router.post("/posts/add", authorizationMiddleware, async (req, res, next) => {
+router.post("/add", authorizationMiddleware, async (req, res, next) => {
   try {
     const id = await postService.createPost(req.body)
     return res.status(201).json(id)
@@ -35,7 +35,7 @@ router.post("/posts/add", authorizationMiddleware, async (req, res, next) => {
 
 // private route
 router.put(
-  "/posts/:id/update",
+  "/:id/update",
   authorizationMiddleware,
   postExistsMiddleware,
   async (req, res, next) => {
@@ -51,7 +51,7 @@ router.put(
 
 // private route
 router.delete(
-  "/posts/:id/delete",
+  "/:id/delete",
   authorizationMiddleware,
   postExistsMiddleware,
   async (req, res, next) => {
@@ -65,7 +65,7 @@ router.delete(
   }
 )
 
-router.get("/posts/search/:keyword", async (req, res, next) => {
+router.get("/search/:keyword", async (req, res, next) => {
   try {
     const keyword = req.params.keyword
     const posts = await postService.searchPost(keyword)

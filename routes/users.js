@@ -4,7 +4,7 @@ const router = express.Router()
 const UserService = require("../services/UserService")
 const authorize = require("../middleware/authorization")()
 
-router.get("/user", authorize, async (req, res, next) => {
+router.get("/", authorize, async (req, res, next) => {
   try {
     const email = req.user.email
     const user = await UserService.getUser(email)

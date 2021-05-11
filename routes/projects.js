@@ -5,7 +5,7 @@ const projectService = require("../services/ProjectService")
 const authorizationMiddleware = require("../middleware/authorization")()
 const projectExistsMiddleware = require("../middleware/projectExists")()
 
-router.get("/projects", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const projects = await projectService.getProjects()
     return res.json(projects)
@@ -14,7 +14,7 @@ router.get("/projects", async (req, res, next) => {
   }
 })
 
-router.get("/projects/:id", projectExistsMiddleware, (req, res, next) => {
+router.get("/:id", projectExistsMiddleware, (req, res, next) => {
   try {
     const { project } = req
     return res.json(project)
@@ -24,7 +24,7 @@ router.get("/projects/:id", projectExistsMiddleware, (req, res, next) => {
 })
 
 router.post(
-  "/projects/add",
+  "/add",
   authorizationMiddleware,
   async (req, res, next) => {
     try {
@@ -37,7 +37,7 @@ router.post(
 )
 
 router.put(
-  "/projects/:id/update",
+  "/:id/update",
   projectExistsMiddleware,
   authorizationMiddleware,
   async (req, res, next) => {
@@ -52,7 +52,7 @@ router.put(
 )
 
 router.delete(
-  "/projects/:id/delete",
+  "/:id/delete",
   projectExistsMiddleware,
   authorizationMiddleware,
   async (req, res, next) => {
