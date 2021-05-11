@@ -95,14 +95,14 @@ module.exports = {
   /**
    * Hard delete a message in the database
    * @param {Number} id - message PK
-   * @returns {Number} id of deleted message
+   * @returns {Boolean} true
    */
   async delete(id) {
     try {
       await Message.sync()
       const message = await Message.findByPk(id)
       await message.destroy()
-      return message.id
+      return true
     } catch (err) {
       return Promise.reject(err)
     }
