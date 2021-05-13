@@ -31,6 +31,7 @@ router.post("/", async (req, res, next) => {
     if (!req.body || !(req.body.from && req.body.subject && req.body.content)) {
       res.status(400).end()
     }
+    const { body } = req
     const message = await messageService.createMessage(body)
     return res.status(201).json(message)
   } catch (err) {
