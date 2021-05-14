@@ -6,11 +6,17 @@ const messageService = require("../services/MessageService")
 
 router.get("/", authorizationMiddleware, async (req, res, next) => {
   try {
-    const archived = req.query.archived
-    const messages = await messageService.getMessages(
-      archived ? true : undefined
-    )
+    const messages = await messageService.getMessages()
     res.status(200).json(messages)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get("/archive", authorizationMiddleware, async (req, res, next) => {
+  try {
+    const archivedMessages = await messageService.getMessages(true)
+    res.status(200).json(archivedMessages)
   } catch (err) {
     next(err)
   }
