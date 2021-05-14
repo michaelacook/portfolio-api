@@ -47,5 +47,25 @@ module.exports = () => {
         return request(app).get("/messages/1").expect(401)
       })
     })
+
+    describe("/messages/archive", () => {
+      it("returns 200 OK and an array of archived messages on the happy path", () => {
+        return request(app)
+          .get("/messages/archive")
+          .auth("mcook0775@gmail.com", process.env.PASSWORD)
+          .expect("Content-Type", /json/)
+          .expect(200)
+          .then((response) => {
+            assert.isArray(response.body)
+            response.body.forEach((msg) => {
+              assert.equal(msg.archived, true)
+            })
+          })
+      })
+
+      it("returns 401 Unauthorized when not sent auth credentials", () => {
+        return request(app).get("/messages/archive").expect(401)
+      })
+    })
   })
 }
