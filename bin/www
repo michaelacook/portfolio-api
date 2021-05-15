@@ -7,6 +7,7 @@
 const app = require('../app');
 const debug = require('debug')('portfolio-api:server');
 const http = require('http');
+const { Server } = require("socket.io")
 
 /**
  * Get port from environment and store in Express.
@@ -20,6 +21,26 @@ app.set('port', port);
  */
 
 const server = http.createServer(app);
+
+/**
+ * Create a web sockets instance
+ */
+const io = new Server(server, {
+  cors: {
+    origin: "https://michaelacook.ca",
+    methods: ["GET", "POST"],
+    credentials: true,
+  },
+})
+
+/**
+ * Listen on the web sockets connection for a message event, then send it back to the client
+ */
+io.on("connection", (socket) => {
+  socket.on("message", (message) => {
+    io.emit(message)
+  })
+})
 
 /**
  * Listen on provided port, on all network interfaces.
