@@ -21,13 +21,17 @@ app.set('port', port);
  */
 
 const server = http.createServer(app);
+const origin = process.env.NODE_ENV !== "production" ? 
+  "http://localhost:3000" 
+  : 
+  "https://michaelacook.ca"
 
 /**
  * Create a web sockets instance
  */
 const io = new Server(server, {
   cors: {
-    origin: "https://michaelacook.ca",
+    origin,
     methods: ["GET", "POST"],
     credentials: true,
   },
