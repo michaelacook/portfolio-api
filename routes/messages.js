@@ -3,6 +3,9 @@ const router = express.Router()
 
 const authorizationMiddleware = require("../middleware/authorization")()
 const messageService = require("../services/MessageService")
+const SocketService = require("../server/socket")
+const { server } = require("../server/http")
+const io = new SocketService(server)
 
 router.get("/", authorizationMiddleware, async (req, res, next) => {
   try {
@@ -39,6 +42,7 @@ router.post("/", async (req, res, next) => {
     }
     const { body } = req
     const message = await messageService.createMessage(body)
+    io.emit("message", message)
     return res.status(201).json(message)
   } catch (err) {
     next(err)
