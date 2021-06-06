@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   Message.init(
     {
       from: DataTypes.STRING,
-      name: DataTypes.STRING,
+      sender_name: DataTypes.STRING,
       subject: DataTypes.STRING,
       content: DataTypes.TEXT,
       read: DataTypes.BOOLEAN,

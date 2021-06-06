@@ -5,8 +5,8 @@ module.exports = {
     queryInterface.bulkInsert("Messages", [
       {
         from: "mcook0775@gmail.com",
+        sender_name: "Michael Cook",
         subject: "Welcome!",
-        name: "Michael Cook",
         content: "This is a demo message.",
         read: false,
         archived: false,

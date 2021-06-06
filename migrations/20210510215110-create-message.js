@@ -11,7 +11,7 @@ module.exports = {
       from: {
         type: Sequelize.STRING,
       },
-      name: {
+      sender_name: {
         type: Sequelize.STRING,
       },
       subject: {
