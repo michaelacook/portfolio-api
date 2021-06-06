@@ -23,6 +23,9 @@ module.exports = {
       read: {
         type: Sequelize.BOOLEAN,
       },
+      archived: {
+        type: Sequelize.BOOLEAN,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

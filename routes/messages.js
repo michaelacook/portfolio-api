@@ -12,6 +12,7 @@ router.get("/", authorizationMiddleware, async (req, res, next) => {
     const messages = await messageService.getMessages()
     return res.status(200).json(messages)
   } catch (err) {
+    console.log(err)
     next(err)
   }
 })

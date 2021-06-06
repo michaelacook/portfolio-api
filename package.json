@@ -5,7 +5,10 @@
   "scripts": {
     "start": "node ./bin/www",
     "test": "mocha ./test/index.js --exit",
-    "cleanup": "prettier --write --no-semi ."
+    "cleanup": "prettier --write --no-semi .",
+    "migrate": "npx sequelize-cli db:migrate",
+    "seed": "npx sequelize-cli db:seed:all",
+    "new-test-db": "rm devDB && npm run migrate && npm run seed"
   },
   "dependencies": {
     "basic-auth": "^2.0.1",
