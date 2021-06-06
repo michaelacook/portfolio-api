@@ -11,6 +11,9 @@ module.exports = {
       from: {
         type: Sequelize.STRING,
       },
+      name: {
+        type: Sequelize.STRING,
+      },
       subject: {
         type: Sequelize.STRING,
       },

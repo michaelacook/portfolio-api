@@ -11,6 +11,7 @@ module.exports = {
       await Message.sync()
       const message = await Message.create({
         from,
+        name,
         subject,
         content,
         read: false,

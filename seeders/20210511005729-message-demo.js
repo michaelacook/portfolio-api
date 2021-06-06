@@ -6,6 +6,7 @@ module.exports = {
       {
         from: "mcook0775@gmail.com",
         subject: "Welcome!",
+        name: "Michael Cook",
         content: "This is a demo message.",
         read: false,
         archived: false,
