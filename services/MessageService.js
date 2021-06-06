@@ -6,7 +6,7 @@ module.exports = {
    * @param {Object} destructured
    * @returns {Object} created message
    */
-  async createMessage({ from, subject, content }) {
+  async createMessage({ from, subject, content, sender_name }) {
     try {
       await Message.sync()
       const message = await Message.create({
