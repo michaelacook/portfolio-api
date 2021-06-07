@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    queryInterface.bulkInsert([
+    queryInterface.bulkInsert("Projects", [
       {
         title: "The Mario API",
         description: "A REST API for managing Mario Bros franchise data.",
@@ -69,11 +69,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    queryInterface.bulkDelete("Projects", null, {})
   },
 }
