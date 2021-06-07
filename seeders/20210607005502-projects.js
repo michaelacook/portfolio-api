@@ -9,7 +9,12 @@ module.exports = {
         img_url:
           "https://michaelacook-portfolio.s3.us-east-2.amazonaws.com/mario-mushroom.png",
         repo_url: "https://github.com/michaelacook/mario-api",
-        technologies: ["TypeScript", "Node.js", "Sequelize", "NestJS"],
+        technologies: JSON.stringify([
+          "TypeScript",
+          "Node.js",
+          "Sequelize",
+          "NestJS",
+        ]),
         live_link: null,
       },
       {
@@ -18,7 +23,7 @@ module.exports = {
         img_url:
           "https://michaelacook-portfolio.s3.us-east-2.amazonaws.com/react-gallery-app.png",
         repo_url: "https://github.com/michaelacook/react-gallery-app",
-        technologies: ["JavaScript", "React.js", "Flickr API"],
+        technologies: JSON.stringify(["JavaScript", "React.js", "Flickr API"]),
         live_link: "https://react-gallery-app-two.vercel.app/",
       },
       {
@@ -28,12 +33,12 @@ module.exports = {
         img_url:
           "https://michaelacook-portfolio.s3.us-east-2.amazonaws.com/employee-directory.jpg",
         repo_url: "https://github.com/michaelacook/employee-directory",
-        technologies: [
+        technologies: JSON.stringify([
           "HTML",
           "CSS",
           "JavaScript",
           "Random User Generator API",
-        ],
+        ]),
         live_link: "https://michaelacook.github.io/employee-directory/",
       },
       {
@@ -42,7 +47,7 @@ module.exports = {
         img_url:
           "https://michaelacook-portfolio.s3.us-east-2.amazonaws.com/minesweeper.png",
         repo_url: "https://github.com/michaelacook/minesweeper",
-        technologies: ["HTML", "CSS", "JavaScript"],
+        technologies: JSON.stringify(["HTML", "CSS", "JavaScript"]),
         live_link: "https://michaelacook.github.io/minesweeper/",
       },
       {
@@ -52,7 +57,12 @@ module.exports = {
         img_url:
           "https://michaelacook-portfolio.s3.us-east-2.amazonaws.com/giphy-app.jpg",
         repo_url: "https://github.com/michaelacook/giphy-app",
-        technologies: ["HTML", "CSS", "JavaScript", "GIPHY API"],
+        technologies: JSON.stringify([
+          "HTML",
+          "CSS",
+          "JavaScript",
+          "GIPHY API",
+        ]),
         live_link: "https://michaelacook.github.io/giphy-app/",
       },
       {
@@ -62,7 +72,13 @@ module.exports = {
         img_url:
           "https://michaelacook-portfolio.s3.us-east-2.amazonaws.com/library_manager.png",
         repo_url: "https://github.com/michaelacook/library-manager",
-        technologies: ["Node.js", "Express.js", "Sequelize.js", "HTML", "CSS"],
+        technologies: JSON.stringify([
+          "Node.js",
+          "Express.js",
+          "Sequelize.js",
+          "HTML",
+          "CSS",
+        ]),
         live_link: "https://library-manager-demo.herokuapp.com/",
       },
     ])
