@@ -16,6 +16,8 @@ module.exports = {
           "NestJS",
         ]),
         live_link: null,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         title: "Image Gallery App",
@@ -25,6 +27,8 @@ module.exports = {
         repo_url: "https://github.com/michaelacook/react-gallery-app",
         technologies: JSON.stringify(["JavaScript", "React.js", "Flickr API"]),
         live_link: "https://react-gallery-app-two.vercel.app/",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         title: "Employee Directory",
@@ -40,6 +44,8 @@ module.exports = {
           "Random User Generator API",
         ]),
         live_link: "https://michaelacook.github.io/employee-directory/",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         title: "Classic Minesweeper",
@@ -49,6 +55,8 @@ module.exports = {
         repo_url: "https://github.com/michaelacook/minesweeper",
         technologies: JSON.stringify(["HTML", "CSS", "JavaScript"]),
         live_link: "https://michaelacook.github.io/minesweeper/",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         title: "Gif Sharing App",
@@ -64,6 +72,8 @@ module.exports = {
           "GIPHY API",
         ]),
         live_link: "https://michaelacook.github.io/giphy-app/",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         title: "Library Manager",
@@ -80,6 +90,8 @@ module.exports = {
           "CSS",
         ]),
         live_link: "https://library-manager-demo.herokuapp.com/",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
     ])
   },
